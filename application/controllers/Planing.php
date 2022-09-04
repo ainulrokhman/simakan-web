@@ -1,6 +1,6 @@
 <?php 
 
-class News extends CI_Controller{
+class Planing extends CI_Controller{
 	
 	function __construct(){
 		parent::__construct();
@@ -11,20 +11,33 @@ class News extends CI_Controller{
 	}
 
 	public function index(){
-		if($this->session->userdata('bmf_admin_login') == true){
-			$app = $this->Base_model->getData('app_settings')->row_array();
+		if($this->session->userdata('auth_login') == true){
             $admin_id = $this->session->userdata('admin_id');
 			$admin = $this->Base_model->getDataBy('admin', array('admin_id' => $admin_id))->row_array();
-			$news = $this->Base_model->getData('news')->result();
-			$data=array('app' => $app, 'admin' => $admin, 'news' => $news);
+			$angket = $this->Base_model->getData('angket')->result();
+			$data = array('admin' => $admin, 'angket' => $angket);
 			
 			$this->load->view("template/header", $data);
-			$this->load->view("news_view", $data);
+			$this->load->view("planing_view", $data);
 			$this->load->view("template/footer");
 		}else{
-			$app = $this->Base_model->getData('app_settings')->row_array();
-			$data=array('app' => $app);
-			$this->load->view('login_view', $data);
+			$this->load->view('login_view');
+		}
+	}
+
+	public function detailAngket($id){
+		if($this->session->userdata('auth_login') == true){
+            $admin_id = $this->session->userdata('admin_id');
+			$admin = $this->Base_model->getDataBy('admin', array('admin_id' => $admin_id))->row_array();
+			$angket = $this->Base_model->getDataBy('angket', array('angket_id' => $id))->row_array();
+			$category = $this->Base_model->getData('category')->result();
+			$data = array('admin' => $admin, 'angket' => $angket, 'category' => $category);
+			
+			$this->load->view("template/header", $data);
+			$this->load->view("planing_detail_view", $data);
+			$this->load->view("template/footer");
+		}else{
+			$this->load->view('login_view');
 		}
 	}
 

@@ -39,15 +39,15 @@
 							<div style="text-align:center;margin-bottom:20px;">
 								<img src="<?php echo base_url('assets/images/logo.png');?>" style="width:150px" />
 							</div>
-							<small>masukkan NIS and kata sandi Anda</small>
+							<small>masukkan NIP and kata sandi Anda</small>
 						</div>
 						<form role="form" action="<?php echo base_url('checklogin'); ?>" method="post">
 							<div class="form-group mb-3">
 								<div class="input-group input-group-alternative">
 									<div class="input-group-prepend">
-										<span class="input-group-text"><i class="fa fa-envelope"></i></span>
+										<span class="input-group-text"><i class="fa fa-user"></i></span>
 									</div>
-									<input class="form-control" placeholder="Nomor Induk Siswa" type="text" name="nis" required="required">
+									<input class="form-control" placeholder="Nomor Induk Pegawai" type="text" name="nip" required="required">
 								</div>
 							</div>
 							<div class="form-group">

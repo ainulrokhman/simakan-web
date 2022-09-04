@@ -54,11 +54,10 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['login'] = 'auth/index';
 $route['checklogin'] = 'auth/checklogin';
-$route['seller'] = 'seller/index';
 $route['logout'] = 'auth/logout';
 
-//app
-$route['about'] = 'about/index';
+$route['planing'] = 'planing/index';
+$route['planing/detail/(:any)'] = 'planing/detailangket/$1';
 $route['updateapp'] = 'about/updatedata';
 
 //product

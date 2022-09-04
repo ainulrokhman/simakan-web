@@ -15,15 +15,15 @@ class Auth extends CI_Controller{
 		if($this->session->userdata('auth_login') == true){
             redirect(base_url());
         }else{
-			$this->load->view('login_view', $data);
+			$this->load->view('login_view');
 		}
 	}
  
 	function checklogin(){
-		$email = $this->input->post('email');
+		$nip = $this->input->post('nip');
 		$password = $this->input->post('password');
 		$where = array(
-			'admin_email' => $email,
+			'admin_nip' => $nip,
 			'admin_password' => md5($password)
 		);
 		$cek = $this->Base_model->getDataBy("admin", $where);
@@ -48,7 +48,7 @@ class Auth extends CI_Controller{
  
 		}else{
 			$alert = array(
-                'message' => 'Username atau Password anda salah',
+                'message' => 'NIP atau Password anda salah',
                 'title' => 'Error',
                 'type' => 'error'
             );
