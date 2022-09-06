@@ -71,84 +71,11 @@ $route['siswa'] = 'siswa/index';
 $route['siswa/add'] = 'siswa/addsiswa';
 $route['siswa/save'] = 'siswa/savesiswa';
 $route['siswa/detail/(:any)'] = 'siswa/detailsiswa/$1';
+$route['siswa/delete/(:any)'] = 'siswa/deletesiswa/$1';
 
-//news
-$route['news'] = 'news/index';
-$route['addnews'] = 'news/addnews';
-$route['savenews'] = 'news/savenews';
-$route['editnews/(:any)'] = 'news/editnews/$1';
-$route['updatenews'] = 'news/updatenews';
-$route['deletenews/(:any)'] = 'news/deletenews/$1';
-$route['newsstatus/(:any)'] = 'news/newsstatus/$1';
-
-//promo
-$route['promo'] = 'promo/index';
-$route['addpromo'] = 'promo/addpromo';
-$route['savepromo'] = 'promo/savepromo';
-$route['editpromo/(:any)'] = 'promo/editpromo/$1';
-$route['updatepromo'] = 'promo/updatepromo';
-$route['deletepromo/(:any)'] = 'promo/deletepromo/$1';
-$route['promostatus/(:any)'] = 'promo/promostatus/$1';
-
-//work
-$route['work'] = 'work/index';
-$route['addwork'] = 'work/addwork';
-$route['savework'] = 'work/savework';
-$route['editwork/(:any)'] = 'work/editwork/$1';
-$route['updatework'] = 'work/updatework';
-$route['deletework/(:any)'] = 'work/deletework/$1';
-$route['workstatus/(:any)'] = 'work/workstatus/$1';
-
-//sallary
-$route['sallary'] = 'sallary/index';
-$route['addsallary'] = 'sallary/addsallary';
-$route['savesallary'] = 'sallary/savesallary';
-$route['editsallary/(:any)'] = 'sallary/editsallary/$1';
-$route['updatesallary'] = 'sallary/updatesallary';
-$route['deletesallary/(:any)'] = 'sallary/deletesallary/$1';
-$route['sallarystatus/(:any)'] = 'sallary/sallarystatus/$1';
-
-//payment
-$route['payment'] = 'payment/index';
-$route['addpayment'] = 'payment/addpayment';
-$route['savepayment'] = 'payment/savepayment';
-$route['editpayment/(:any)'] = 'payment/editpayment/$1';
-$route['updatepayment'] = 'payment/updatepayment';
-$route['deletepayment/(:any)'] = 'payment/deletepayment/$1';
-$route['paymentstatus/(:any)'] = 'payment/paymentstatus/$1';
-
-//location
-$route['location'] = 'location/index';
-$route['province'] = 'location/province';
-$route['saveprovince'] = 'location/saveprovince';
-$route['updateprovince'] = 'location/updateprovince';
-$route['editprovince/(:any)'] = 'location/editprovince/$1';
-$route['deleteprovince/(:any)'] = 'location/deleteprovince/$1';
-
-$route['city'] = 'location/city';
-$route['editcity/(:any)'] = 'location/editcity/$1';
-$route['savecity'] = 'location/savecity';
-$route['updatecity'] = 'location/updatecity';
-$route['deletecity/(:any)'] = 'location/deletecity/$1';
-
-$route['district'] = 'location/district';
-$route['editdistrict/(:any)'] = 'location/editdistrict/$1';
-$route['savedistrict'] = 'location/savedistrict';
-$route['updatedistrict'] = 'location/updatedistrict';
-$route['deletedistrict/(:any)'] = 'location/deletedistrict/$1';
-
-
-//admin
-$route['admin'] = 'admin/index';
-$route['saveadmin'] = 'admin/saveadmin';
-$route['deleteadmin/(:any)'] = 'admin/deleteadmin/$1';
-$route['resetpassword/(:any)'] = 'admin/resetpassword/$1';
-$route['profile'] = 'admin/profile';
-$route['changepassword'] = 'admin/changepassword';
-$route['updateprofile'] = 'admin/updateprofile';
-$route['updatepassword'] = 'admin/updatepassword';
-
-//user
-$route['user'] = 'user/index';
-$route['deleteuser/(:any)'] = 'user/deleteuser/$1';
+//guru
+$route['guru'] = 'guru/index';
+$route['guru/add'] = 'guru/addguru';
+$route['guru/save'] = 'guru/saveguru';
+$route['guru/delete/(:any)'] = 'guru/deleteguru/$1';
 ?>

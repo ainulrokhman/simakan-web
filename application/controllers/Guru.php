@@ -1,6 +1,6 @@
 <?php 
 
-class Siswa extends CI_Controller{
+class Guru extends CI_Controller{
 	
 	function __construct(){
 		parent::__construct();
@@ -14,71 +14,52 @@ class Siswa extends CI_Controller{
 		if($this->session->userdata('auth_login') == true){
             $admin_id = $this->session->userdata('admin_id');
 			$admin = $this->Base_model->getDataBy('admin', array('admin_id' => $admin_id))->row_array();
-			$siswa = $this->db->select('*')->from('siswa')->join('class', 'siswa.class_id = class.class_id', 'left')->get()->result();
-			$data=array('admin' => $admin, 'siswa' => $siswa);
+			$guru = $this->Base_model->getData('admin')->result();
+			$data=array('admin' => $admin, 'guru' => $guru);
 			
 			$this->load->view("template/header", $data);
-			$this->load->view("siswa_view", $data);
+			$this->load->view("guru_view", $data);
 			$this->load->view("template/footer");
 		}else{
 			$this->load->view('login_view');
 		}
 	}
 
-	public function detailSiswa($id){
+
+	public function addGuru(){
 		if($this->session->userdata('auth_login') == true){
             $admin_id = $this->session->userdata('admin_id');
 			$admin = $this->Base_model->getDataBy('admin', array('admin_id' => $admin_id))->row_array();
-			$siswa = $this->db->select('*')->from('siswa')->join('class', 'siswa.class_id = class.class_id', 'left')->where(array('siswa.siswa_id' => $id))->get()->row_array();
-			$data=array('admin' => $admin, 'siswa' => $siswa);
+			$data=array('admin' => $admin);
 			
 			$this->load->view("template/header", $data);
-			$this->load->view("siswa_detail_view", $data);
+			$this->load->view("guru_add_view", $data);
 			$this->load->view("template/footer");
 		}else{
 			$this->load->view('login_view');
 		}
 	}
 
-	public function addSiswa(){
-		if($this->session->userdata('auth_login') == true){
-            $admin_id = $this->session->userdata('admin_id');
-			$admin = $this->Base_model->getDataBy('admin', array('admin_id' => $admin_id))->row_array();
-			$class = $this->Base_model->getDataBy('class', array('is_active' => 1))->result();
-			$data=array('admin' => $admin, 'class' => $class);
-			
-			$this->load->view("template/header", $data);
-			$this->load->view("siswa_add_view", $data);
-			$this->load->view("template/footer");
-		}else{
-			$this->load->view('login_view');
-		}
-	}
 
-	public function saveSiswa(){
+	public function saveGuru(){
 		date_default_timezone_set('Asia/Jakarta');
 		$name = $this->input->post('name');
-		$email = $this->input->post('email');
-		$phone = $this->input->post('phone');
-		$nis = $this->input->post('nis');
-		$class = $this->input->post('class');
+		$jabatan = $this->input->post('jabatan');
+		$nip = $this->input->post('nip');
 		$admin_id = $this->session->userdata('admin_id');
 
 		$data = array(
-			'siswa_name'       	 	=> $name,
-			'siswa_email'   		=> $email,
-			'siswa_phone_number'    => $phone,
-			'siswa_nis'    => $nis,
-			'class_id'    => $class,
-			'siswa_password' => md5('password123'),
-			'siswa_images' => 'default.png',
+			'admin_nip'       	 	=> $nip,
+			'admin_name'   		=> $name,
+			'admin_role'    => $jabatan,
+			'admin_password' => md5('password123'),
 			'is_active'     		=> 1,
 			'created_date'     		=> date('Y-m-d H:i:s'),
 			'created_by'			=> $admin_id,
 			'updated_date'			=> date('Y-m-d H:i:s'),
 			'updated_by'			=> $admin_id
 		);
-		$insert = $this->Base_model->insertData('siswa', $data);
+		$insert = $this->Base_model->insertData('admin', $data);
 		if($insert){
 			$alert = array(
 				'message' => 'Successfully save data',
@@ -86,7 +67,7 @@ class Siswa extends CI_Controller{
 				'type' => 'success'
 			);
 			$this->session->set_flashdata($alert);
-			redirect('siswa');
+			redirect('guru');
 		}else{
 			$alert = array(
 				'message' => 'Opps.. something went wrong',
@@ -98,8 +79,8 @@ class Siswa extends CI_Controller{
 		}
 	}
 
-	public function deleteSiswa($id){
-		$delete=$this->Base_model->deleteData('siswa', array('siswa_id' => $id));
+	public function deleteGuru($id){
+		$delete=$this->Base_model->deleteData('admin', array('admin_id' => $id));
 		if($delete){
 			$alert = array(
 				'message' => 'Successfully delete data',
