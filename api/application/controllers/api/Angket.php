@@ -11,7 +11,9 @@ class Angket extends BD_Controller {
     }
     
     public function getAngket_post(){
+		date_default_timezone_set('Asia/Jakarta');
         $id = $this->post('siswa_id');
+        $date = date("d-M-Y");
         try{
             $this->db->select('*');    
             $this->db->from('responden a');
@@ -23,6 +25,15 @@ class Angket extends BD_Controller {
 
             $data = array();
             foreach($angket->result() as $data_angket){
+                $status = "";
+                if($date > date("d-M-Y", strtotime($data_angket->angket_end_date))) {
+                    $status = "Sudah Berakhir";
+                } else if($date < date("d-M-Y", strtotime($data_angket->angket_start_date))) {
+                    $status = "Belum Dimulai";
+                } else {
+                    $status = "OK";
+                }
+
                 $object = array(
                     'responden_id' => (int) $data_angket->responden_id,
                     'angket_id' => (int) $data_angket->angket_id,
@@ -31,6 +42,7 @@ class Angket extends BD_Controller {
                     'category_name' => $data_angket->category_name,
                     'angket_start_date' => date("d-M-Y", strtotime($data_angket->angket_start_date)),
                     'angket_end_date' => date("d-M-Y", strtotime($data_angket->angket_end_date)),
+                    'status' => $status
                 );
                 array_push($data,$object);
             }
