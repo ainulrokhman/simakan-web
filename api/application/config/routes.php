@@ -68,6 +68,7 @@ $route['login'] = 'api/auth/login';
 $route['user'] = 'api/user/getuser';
 
 $route['angket'] = 'api/angket/getangket';
+$route['question'] = 'api/angket/getQuestion';
 
 //$route['product/(:any)'] = 'product/detail_product/$1';
 

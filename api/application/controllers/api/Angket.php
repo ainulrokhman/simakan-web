@@ -60,4 +60,40 @@ class Angket extends BD_Controller {
             ], REST_Controller::HTTP_OK);
         }
     }
+
+    public function getQuestion_post(){
+		date_default_timezone_set('Asia/Jakarta');
+        $id = $this->post('angket_id');
+        $date = date("d-M-Y");
+        try{
+            $angket = $this->Base_model->getDataBy("questionner", array('angket_id' => $id));
+
+            $data = array();
+            foreach($angket->result() as $data_angket){
+
+                $object = array(
+                    'questionner_id' => (int) $data_angket->questionner_id,
+                    'questionner_title' => $data_angket->questionner_title,
+                    'option_a' => $data_angket->option_a,
+                    'option_b' => $data_angket->option_b,
+                    'option_c' => $data_angket->option_c,
+                    'option_d' => $data_angket->option_d,
+                    'option_e' => $data_angket->option_e,
+                );
+                array_push($data,$object);
+            }
+
+            $this->set_response([
+                'isSuccess' => TRUE,
+                'message' => 'Successfully get data',
+                'data' => $data
+            ], REST_Controller::HTTP_OK);
+        }catch(Exception $e){
+            $this->set_response([
+                'isSuccess' => FALSE,
+                'message' => $error,
+                'data' => null
+            ], REST_Controller::HTTP_OK);
+        }
+    }
 }
