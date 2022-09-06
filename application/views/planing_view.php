@@ -20,7 +20,7 @@
             <h6 class="mb-0">Data Angket</h6>
           </div>
           <div class="col-6 text-end">
-            <a href="index.php?page=add-angket" class="btn btn-outline-primary btn-sm mb-0">
+            <a href="<?php echo base_url();?>planing/add" class="btn btn-outline-primary btn-sm mb-0">
               <i class="fa fa-plus"></i>&nbsp;&nbsp;&nbsp;Tambah Angket </a>
           </div>
         </div>
@@ -58,7 +58,12 @@
                   </div>
                 </td>
                 <td style="text-align:center;vertical-align:middle">
-                  <span class="text-secondary text-xs font-weight-bold">5</span>
+                  <span class="text-secondary text-xs font-weight-bold">
+					<?php
+						$total = $this->Base_model->getDataBy('questionner', array('angket_id' => $data_angket->angket_id));
+						echo $total->num_rows();
+					?>
+				  </span>
                 </td>
                 <td class="align-middle text-center text-sm">
 					<?php if($data_angket->is_active == 1) { ?>
@@ -73,7 +78,7 @@
                 <td class="align-middle" style="text-align:center;vertical-align:middle">
                   <a href="<?php echo base_url();?>planing/detail/<?php echo $data_angket->angket_id;?>" class="text-secondary font-weight-bold text-sm">
                     <i class="fa fa-edit"></i>
-                  </a> &nbsp;&nbsp;&nbsp; <a href="#" class="text-danger font-weight-bold text-sm">
+                  </a> &nbsp;&nbsp;&nbsp; <a href="<?php echo base_url();?>planing/delete/<?php echo $data_angket->angket_id;?>" class="text-danger font-weight-bold text-sm" onclick="return confirm('Are you sure delete this data?');">
                     <i class="fa fa-trash"></i>
                   </a>
                 </td>

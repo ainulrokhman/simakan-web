@@ -31,7 +31,10 @@ class Planing extends CI_Controller{
 			$admin = $this->Base_model->getDataBy('admin', array('admin_id' => $admin_id))->row_array();
 			$angket = $this->Base_model->getDataBy('angket', array('angket_id' => $id))->row_array();
 			$category = $this->Base_model->getData('category')->result();
-			$data = array('admin' => $admin, 'angket' => $angket, 'category' => $category);
+			$siswa = $this->Base_model->getData('siswa')->result();
+			$questionner = $this->Base_model->getDataBy('questionner', array('angket_id' => $id))->result();
+			$responden = $this->Base_model->getDataBy('responden', array('angket_id' => $id))->num_rows();
+			$data = array('admin' => $admin, 'angket' => $angket, 'category' => $category, 'siswa' => $siswa, 'questionner' => $questionner, 'responden' => $responden);
 			
 			$this->load->view("template/header", $data);
 			$this->load->view("planing_detail_view", $data);
@@ -41,60 +44,57 @@ class Planing extends CI_Controller{
 		}
 	}
 
-	public function editNews($id){
-		if($this->session->userdata('bmf_admin_login') == true){
-			$app = $this->Base_model->getData('app_settings')->row_array();
+	public function addAngket(){
+		if($this->session->userdata('auth_login') == true){
             $admin_id = $this->session->userdata('admin_id');
 			$admin = $this->Base_model->getDataBy('admin', array('admin_id' => $admin_id))->row_array();
-			$news = $this->Base_model->getDataBy('news', array('news_id' => $id))->row_array();
-			$data=array('app' => $app, 'admin' => $admin, 'news' => $news);
+			$category = $this->Base_model->getData('category')->result();
+			$data = array('admin' => $admin, 'category' => $category);
 			
 			$this->load->view("template/header", $data);
-			$this->load->view("news_edit_view", $data);
+			$this->load->view("planing_add_view", $data);
 			$this->load->view("template/footer");
 		}else{
-			$app = $this->Base_model->getData('app_settings')->row_array();
-			$data=array('app' => $app);
-			$this->load->view('login_view', $data);
+			$this->load->view('login_view');
 		}
 	}
+	
 
-	public function addNews(){
-		if($this->session->userdata('bmf_admin_login') == true){
-			$app = $this->Base_model->getData('app_settings')->row_array();
-            $admin_id = $this->session->userdata('admin_id');
-			$admin = $this->Base_model->getDataBy('admin', array('admin_id' => $admin_id))->row_array();
-			$data=array('app' => $app, 'admin' => $admin);
-			
-			$this->load->view("template/header", $data);
-			$this->load->view("news_add_view", $data);
-			$this->load->view("template/footer");
-		}else{
-			$app = $this->Base_model->getData('app_settings')->row_array();
-			$data=array('app' => $app);
-			$this->load->view('login_view', $data);
+	public function saveResponden(){
+		$angket = $this->input->post('angket');
+		$siswa = $this->input->post('siswa');
+		$delete=$this->Base_model->deleteData('responden', array('angket_id' => $angket));
+		foreach($siswa as $data_siswa) {
+			$check = $this->Base_model->getDataBy('responden', array('angket_id' => $angket, 'siswa_id' => $data_siswa));
+			if($check->num_rows() == 0){
+				$data = array(
+					'angket_id' => $angket,
+					'siswa_id' => $data_siswa
+				);
+				$insert = $this->Base_model->insertData('responden', $data);
+			}
 		}
-	}
-
-
-	public function saveNews(){
-		date_default_timezone_set('Asia/Jakarta');
-		$title = $this->input->post('title');
-		$desc = $this->input->post('desc');
-		$images = file_get_contents($_FILES['images']['tmp_name']); 
-		$admin_id = $this->session->userdata('admin_id');
-
-		$data = array(
-			'news_title'       	 	=> $title,
-			'news_description'   	=> $desc,
-			'news_images'     		=> $images,
-			'is_active'     		=> 1,
-			'created_date'     		=> date('Y-m-d H:i:s'),
-			'created_by'			=> $admin_id,
-			'updated_date'			=> date('Y-m-d H:i:s'),
-			'updated_by'			=> $admin_id
+		$alert = array(
+			'message' => 'OK',
+			'title' => 'Success',
+			'type' => 'success'
 		);
-		$insert = $this->Base_model->insertData('news', $data);
+		$this->session->set_flashdata($alert);
+		redirect($_SERVER['HTTP_REFERER']);
+	}
+
+	public function saveQuestion(){
+		$angket = $this->input->post('angket');
+		$question = $this->input->post('question');
+		$admin_id = $this->session->userdata('admin_id');
+		$data = array(
+			'angket_id' => $angket,
+			'questionner_title' => $question,
+			'questionner_type' => 'essay',
+			'created_by' => $admin_id,
+			'updated_by' => $admin_id
+		);
+		$insert = $this->Base_model->insertData('questionner', $data);
 		if($insert){
 			$alert = array(
 				'message' => 'Successfully save data',
@@ -102,7 +102,7 @@ class Planing extends CI_Controller{
 				'type' => 'success'
 			);
 			$this->session->set_flashdata($alert);
-			redirect('news');
+			redirect($_SERVER['HTTP_REFERER']);
 		}else{
 			$alert = array(
 				'message' => 'Opps.. something went wrong',
@@ -114,38 +114,69 @@ class Planing extends CI_Controller{
 		}
 	}
 
-	function updateNews(){
+	public function saveAngket(){
+		$title = $this->input->post('title');
+		$desc = $this->input->post('desc');
+		$category = $this->input->post('category');
+		$start_date = $this->input->post('start_date');
+		$end_date = $this->input->post('end_date');
+		$admin_id = $this->session->userdata('admin_id');
+		$data = array(
+			'angket_title' => $title,
+			'angket_description' => $desc,
+			'category_id' => $category,
+			'angket_start_date' => $start_date,
+			'angket_end_date' => $end_date,
+			'is_active' => 0,
+			'created_by' => $admin_id,
+			'updated_by' => $admin_id
+		);
+		$insert = $this->Base_model->insertData('angket', $data);
+		$row = $this->db->select("*")->limit(1)->order_by('angket_id',"DESC")->get("angket")->row();
+		if($insert){
+			$alert = array(
+				'message' => 'Successfully save data',
+				'title' => 'Success',
+				'type' => 'success'
+			);
+			$this->session->set_flashdata($alert);
+			redirect('planing/detail/'.$row->angket_id);
+		}else{
+			$alert = array(
+				'message' => 'Opps.. something went wrong',
+				'title' => 'Error',
+				'type' => 'error'
+			);
+			$this->session->set_flashdata($alert);
+			redirect($_SERVER['HTTP_REFERER']);
+		}
+	}
+
+	function updateAngket(){
 		date_default_timezone_set('Asia/Jakarta');
 		$id = $this->input->post('id');
-		$name = $this->input->post('name');
+		$title = $this->input->post('title');
 		$desc = $this->input->post('desc');
-		if(!empty($_FILES['images']['tmp_name'])){
-			$images = file_get_contents($_FILES['images']['tmp_name']); 
-		}else{
-			$images = null;
-		}
+		$category = $this->input->post('category');
+		$start_date = $this->input->post('start_date');
+		$end_date = $this->input->post('end_date');
+		$status = $this->input->post('status');
 		$admin_id = $this->session->userdata('admin_id');
 
-		$kondisi = array('news_id' => $id);
+		$kondisi = array('angket_id' => $id);
 
-		if($images != null){
-			$data = array(
-				'news_title'       		=> $name,
-				'news_description'   	=> $desc,
-				'news_images'     		=> $images,
-				'updated_date'			=> date('Y-m-d H:i:s'),
-				'updated_by'			=> $admin_id
-			);
-		}else{
-			$data = array(
-				'news_title'       		=> $name,
-				'news_description'   	=> $desc,
-				'updated_date'			=> date('Y-m-d H:i:s'),
-				'updated_by'			=> $admin_id
-			);
-		}
+		$data = array(
+			'angket_title' => $title,
+			'angket_description' => $desc,
+			'category_id' => $category,
+			'angket_start_date' => $start_date,
+			'angket_end_date' => $end_date,
+			'is_active' => $status,
+			'updated_by' => $admin_id,
+			'updated_date' => date("Y-m-d H:i:s")
+		);
 
-		$update = $this->Base_model->updateData('news', $data, $kondisi);
+		$update = $this->Base_model->updateData('angket', $data, $kondisi);
 		if($update){
 			$alert = array(
 				'message' => 'Successfully update data',
@@ -153,7 +184,7 @@ class Planing extends CI_Controller{
 				'type' => 'success'
 			);
 			$this->session->set_flashdata($alert);
-			redirect('news');
+			redirect($_SERVER['HTTP_REFERER']);
 		}else{
 			$alert = array(
 				'message' => 'Opps.. something went wrong',
@@ -165,8 +196,8 @@ class Planing extends CI_Controller{
 		}	
 	}
 
-	public function deleteNews($id){
-		$delete=$this->Base_model->deleteData('news', array('news_id' => $id));
+	public function deleteAngket($id){
+		$delete=$this->Base_model->deleteData('angket', array('angket_id' => $id));
 		if($delete){
 			$alert = array(
 				'message' => 'Successfully delete data',
@@ -174,7 +205,7 @@ class Planing extends CI_Controller{
 				'type' => 'success'
 			);
 			$this->session->set_flashdata($alert);
-			redirect('news');
+			redirect($_SERVER['HTTP_REFERER']);
 		}else{
 			$alert = array(
 				'message' => 'Opps.. something went wrong',
@@ -186,45 +217,19 @@ class Planing extends CI_Controller{
 		}
 	}
 
-	public function newsStatus($id){
-		date_default_timezone_set('Asia/Jakarta');
-		$admin_id = $this->session->userdata('admin_id');
-		$news = $this->Base_model->getDataBy('news', array('news_id' => $id));
-		if($news->num_rows() > 0){
-			$status = $news->row()->is_active;
-			if($status == 1) {
-				$active = 0;
-			}else{
-				$active = 1;
-			}
-			$update=$this->Base_model->updateData(
-				'news', 
-				array(
-					'is_active' => $active,
-					'updated_by' => $admin_id,
-					'updated_date' => date("Y-m-d H:i:s")
-				), 
-				array('news_id' => $id));
-			if($update){
-				$alert = array(
-					'message' => 'Successfully update data',
-					'title' => 'Success',
-					'type' => 'success'
-				);
-				$this->session->set_flashdata($alert);
-				redirect('news');
-			}else{
-				$alert = array(
-					'message' => 'Opps.. something went wrong',
-					'title' => 'Error',
-					'type' => 'error'
-				);
-				$this->session->set_flashdata($alert);
-				redirect($_SERVER['HTTP_REFERER']);
-			}
-		} else{
+	public function deleteQuestion($id){
+		$delete=$this->Base_model->deleteData('questionner', array('questionner_id' => $id));
+		if($delete){
 			$alert = array(
-				'message' => 'Opps.. news not found',
+				'message' => 'Successfully delete data',
+				'title' => 'Success',
+				'type' => 'success'
+			);
+			$this->session->set_flashdata($alert);
+			redirect($_SERVER['HTTP_REFERER']);
+		}else{
+			$alert = array(
+				'message' => 'Opps.. something went wrong',
 				'title' => 'Error',
 				'type' => 'error'
 			);

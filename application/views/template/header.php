@@ -39,7 +39,7 @@
       </a>
     </div>
     <hr class="horizontal dark mt-0">
-    <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
+    <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main" style="height:auto;">
       <ul class="navbar-nav">
         <li class="nav-item">
           <a class="nav-link active" href="<?php echo base_url();?>">
@@ -58,7 +58,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link " href="index.php?page=organizing">
+          <a class="nav-link " href="<?php echo base_url();?>organizing">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="fa fa-chart-pie text-success text-sm opacity-10"></i>
             </div>
@@ -66,7 +66,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link " href="index.php?page=controlling">
+          <a class="nav-link " href="<?php echo base_url();?>controlling">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="fa fa-keyboard text-info text-sm opacity-10"></i>
             </div>
@@ -74,7 +74,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link " href="index.php?page=actuating">
+          <a class="nav-link " href="<?php echo base_url();?>actuating">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="fa fa-file-pdf text-danger text-sm opacity-10"></i>
             </div>
@@ -85,15 +85,15 @@
           <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Master Data</h6>
         </li>
         <li class="nav-item">
-          <a class="nav-link " href="index.php?page=siswa">
+          <a class="nav-link " href="<?php echo base_url();?>siswa">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="ni ni-single-02 text-dark text-sm opacity-10"></i>
+              <i class="fa fa-users text-dark text-sm opacity-10"></i>
             </div>
             <span class="nav-link-text ms-1">Data Siswa</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link " href="index.php?page=guru">
+          <a class="nav-link " href="<?php echo base_url();?>guru">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="fa fa-user-tie text-warning text-sm opacity-10"></i>
             </div>

@@ -57,17 +57,20 @@ $route['checklogin'] = 'auth/checklogin';
 $route['logout'] = 'auth/logout';
 
 $route['planing'] = 'planing/index';
+$route['planing/add'] = 'planing/addangket';
+$route['planing/save'] = 'planing/saveangket';
+$route['planing/delete/(:any)'] = 'planing/deleteangket/$1';
 $route['planing/detail/(:any)'] = 'planing/detailangket/$1';
-$route['updateapp'] = 'about/updatedata';
+$route['planing/saveresponden'] = 'planing/saveresponden';
+$route['planing/savequestion'] = 'planing/savequestion';
+$route['planing/update'] = 'planing/updateangket';
+$route['planing/deletequestion/(:any)'] = 'planing/deletequestion/$1';
 
-//product
-$route['product'] = 'product/index';
-$route['addproduct'] = 'product/addproduct';
-$route['saveproduct'] = 'product/saveproduct';
-$route['editproduct/(:any)'] = 'product/editproduct/$1';
-$route['updateproduct'] = 'product/updateproduct';
-$route['deleteproduct/(:any)'] = 'product/deleteproduct/$1';
-$route['productstatus/(:any)'] = 'product/productstatus/$1';
+//siswa
+$route['siswa'] = 'siswa/index';
+$route['siswa/add'] = 'siswa/addsiswa';
+$route['siswa/save'] = 'siswa/savesiswa';
+$route['siswa/detail/(:any)'] = 'siswa/detailsiswa/$1';
 
 //news
 $route['news'] = 'news/index';
