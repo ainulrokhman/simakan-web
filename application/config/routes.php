@@ -78,4 +78,10 @@ $route['guru'] = 'guru/index';
 $route['guru/add'] = 'guru/addguru';
 $route['guru/save'] = 'guru/saveguru';
 $route['guru/delete/(:any)'] = 'guru/deleteguru/$1';
+
+//profile
+$route['profile'] = 'auth/profile';
+$route['profile/update'] = 'auth/updateprofile';
+$route['profile/changepassword'] = 'auth/changepassword';
+$route['profile/updatepassword'] = 'auth/updatepassword';
 ?>
