@@ -56,6 +56,7 @@ $route['login'] = 'auth/index';
 $route['checklogin'] = 'auth/checklogin';
 $route['logout'] = 'auth/logout';
 
+//planing
 $route['planing'] = 'planing/index';
 $route['planing/add'] = 'planing/addangket';
 $route['planing/save'] = 'planing/saveangket';
@@ -65,6 +66,9 @@ $route['planing/saveresponden'] = 'planing/saveresponden';
 $route['planing/savequestion'] = 'planing/savequestion';
 $route['planing/update'] = 'planing/updateangket';
 $route['planing/deletequestion/(:any)'] = 'planing/deletequestion/$1';
+
+//organizing
+$route['organizing'] = 'organizing/index';
 
 //siswa
 $route['siswa'] = 'siswa/index';
