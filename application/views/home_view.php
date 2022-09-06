@@ -9,10 +9,10 @@
                   <div class="numbers">
                     <p class="text-sm mb-0 text-uppercase font-weight-bold">Total Angket</p>
                     <h5 class="font-weight-bolder">
-                      20
+                      <?php echo $angket->num_rows();?>
                     </h5>
                     <p class="mb-0">
-                      <a href=""><span class="text-sm font-weight-bolder">Lihat Selengkapnya</span></a>
+                      <a href="<?php echo base_url();?>planing"><span class="text-sm font-weight-bolder">Lihat Selengkapnya</span></a>
                     </p>
                   </div>
                 </div>
@@ -33,10 +33,10 @@
                   <div class="numbers">
                     <p class="text-sm mb-0 text-uppercase font-weight-bold">Total Siswa</p>
                     <h5 class="font-weight-bolder">
-                      40
+                      <?php echo $siswa->num_rows();?>
                     </h5>
                     <p class="mb-0">
-                      <a href=""><span class="text-sm font-weight-bolder">Lihat Selengkapnya</span></a>
+                      <a href="<?php echo base_url();?>siswa"><span class="text-sm font-weight-bolder">Lihat Selengkapnya</span></a>
                     </p>
                   </div>
                 </div>
@@ -57,10 +57,10 @@
                   <div class="numbers">
                     <p class="text-sm mb-0 text-uppercase font-weight-bold">Total Guru</p>
                     <h5 class="font-weight-bolder">
-                      10
+                      <?php echo $guru->num_rows();?>
                     </h5>
                     <p class="mb-0">
-                      <a href=""><span class="text-sm font-weight-bolder">Lihat Selengkapnya</span></a>
+                      <a href="<?php echo base_url();?>guru"><span class="text-sm font-weight-bolder">Lihat Selengkapnya</span></a>
                     </p>
                   </div>
                 </div>
@@ -81,10 +81,10 @@
                   <div class="numbers">
                     <p class="text-sm mb-0 text-uppercase font-weight-bold">Total Kategori</p>
                     <h5 class="font-weight-bolder">
-                      5
+                      <?php echo $category->num_rows();?>
                     </h5>
                     <p class="mb-0">
-                      <a href=""><span class="text-sm font-weight-bolder">Lihat Selengkapnya</span></a>
+                      <a href="<?php echo base_url();?>category"><span class="text-sm font-weight-bolder">Lihat Selengkapnya</span></a>
                     </p>
                   </div>
                 </div>

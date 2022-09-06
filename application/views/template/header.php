@@ -42,7 +42,7 @@
     <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main" style="height:auto;">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active" href="<?php echo base_url();?>">
+          <a class="nav-link" href="<?php echo base_url();?>">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="fa fa-home text-primary text-sm opacity-10"></i>
             </div>
