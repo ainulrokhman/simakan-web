@@ -17,7 +17,10 @@
       <div class="card-header pb-0">
         <div class="row">
           <div class="col-6 d-flex align-items-center">
-            <h6 class="mb-0">Data Angket</h6>
+            <div>
+              <h6 class="mb-0">Data Angket</h6>
+              <p class="text-xs text-secondary mb-0">Penetapan sasaran melalui angket</p>
+            </div>
           </div>
           <div class="col-6 text-end">
             <a href="<?php echo base_url();?>planing/add" class="btn btn-outline-primary btn-sm mb-0">

@@ -108,9 +108,11 @@
                     </span>
                   </td>
                   <td class="align-middle" style="text-align:center;vertical-align:middle">
-                    <a href="#" class="text-secondary font-weight-bold text-sm">
+                    <!-- <a href="#" class="text-secondary font-weight-bold text-sm">
                       <i class="fa fa-edit"></i>
-                    </a> &nbsp;&nbsp;&nbsp; <a href="<?php echo base_url();?>planing/deletequestion/<?php echo $data_questionner->questionner_id;?>" class="text-danger font-weight-bold text-sm" onclick="return confirm('Are you sure delete this data?');">
+                    </a>  -->
+                    <!-- &nbsp;&nbsp;&nbsp;  -->
+                    <a href="<?php echo base_url();?>planing/deletequestion/<?php echo $data_questionner->questionner_id;?>" class="text-danger font-weight-bold text-sm" onclick="return confirm('Are you sure delete this data?');">
                       <i class="fa fa-trash"></i>
                     </a>
                   </td>
@@ -194,13 +196,36 @@
             <label for="example-text-input" class="form-control-label">Pertanyaan</label>
             <input class="form-control" placeholder="Pertanyaan" type="text" name="question" required="required">
           </div>
-          <!-- <div class="form-group">
-            <label for="example-text-input" class="form-control-label">Jenis</label>
-            <select class="form-control" name="type">
-              <option value="essay">Essay</option>
-              <option value="pg">Pilihan Ganda</option>
+          <div class="form-group">
+            <label for="example-text-input" class="form-control-label">Opsi A</label>
+            <input class="form-control" placeholder="Opsi A" type="text" name="opsi_a" required="required">
+          </div>
+          <div class="form-group">
+            <label for="example-text-input" class="form-control-label">Opsi B</label>
+            <input class="form-control" placeholder="Opsi B" type="text" name="opsi_b" required="required">
+          </div>
+          <div class="form-group">
+            <label for="example-text-input" class="form-control-label">Opsi C</label>
+            <input class="form-control" placeholder="Opsi C" type="text" name="opsi_c" required="required">
+          </div>
+          <div class="form-group">
+            <label for="example-text-input" class="form-control-label">Opsi D</label>
+            <input class="form-control" placeholder="Opsi D" type="text" name="opsi_d" required="required">
+          </div>
+          <div class="form-group">
+            <label for="example-text-input" class="form-control-label">Opsi E</label>
+            <input class="form-control" placeholder="Opsi E" type="text" name="opsi_e" required="required">
+          </div>
+          <div class="form-group">
+            <label for="example-text-input" class="form-control-label">Jawaban</label>
+            <select class="form-control" name="answer" required>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="D">D</option>
+              <option value="E">E</option>
             </select>
-          </div> -->
+          </div>
         </div>
         <div class="modal-footer">
           <button type="submit" class="btn bg-gradient-primary">Simpan</button>

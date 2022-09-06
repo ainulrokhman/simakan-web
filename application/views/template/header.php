@@ -66,19 +66,19 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link " href="<?php echo base_url();?>controlling">
-            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-              <i class="fa fa-keyboard text-info text-sm opacity-10"></i>
-            </div>
-            <span class="nav-link-text ms-1">Controlling</span>
-          </a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link " href="<?php echo base_url();?>actuating">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="fa fa-file-pdf text-danger text-sm opacity-10"></i>
             </div>
             <span class="nav-link-text ms-1">Actuating</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link " href="<?php echo base_url();?>controlling">
+            <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="fa fa-keyboard text-info text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">Controlling</span>
           </a>
         </li>
         <li class="nav-item mt-3">

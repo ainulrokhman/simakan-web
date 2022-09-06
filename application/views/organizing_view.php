@@ -21,7 +21,10 @@
       <div class="card-header pb-0">
         <div class="row">
           <div class="col-6 d-flex align-items-center">
-            <h6 class="mb-0">Data Grafik Angket</h6>
+            <div>
+              <h6 class="mb-0">Data Grafik Angket</h6>
+              <p class="text-xs text-secondary mb-0">Proses alokasi tugas untuk mencapai sasaran</p>
+            </div>
           </div>
         </div>
       </div>

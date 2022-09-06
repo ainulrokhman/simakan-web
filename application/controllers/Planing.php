@@ -86,11 +86,23 @@ class Planing extends CI_Controller{
 	public function saveQuestion(){
 		$angket = $this->input->post('angket');
 		$question = $this->input->post('question');
+		$option_a = $this->input->post('opsi_a');
+		$option_b = $this->input->post('opsi_b');
+		$option_c = $this->input->post('opsi_c');
+		$option_d = $this->input->post('opsi_d');
+		$option_e = $this->input->post('opsi_e');
+		$answer = $this->input->post('answer');
 		$admin_id = $this->session->userdata('admin_id');
 		$data = array(
 			'angket_id' => $angket,
 			'questionner_title' => $question,
-			'questionner_type' => 'essay',
+			'questionner_type' => 'pg',
+			'option_a' => $option_a,
+			'option_b' => $option_b,
+			'option_c' => $option_c,
+			'option_d' => $option_d,
+			'option_e' => $option_e,
+			'true_answer' => $answer,
 			'created_by' => $admin_id,
 			'updated_by' => $admin_id
 		);
