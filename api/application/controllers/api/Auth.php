@@ -37,4 +37,34 @@ class Auth extends BD_Controller {
             ], REST_Controller::HTTP_OK);
         }
     }
+
+    public function changePassword_post(){
+        $user_id = $this->post('siswa_id');
+        $oldPassword = md5($this->post('old_password'));
+        $newPassword = md5($this->post('new_password'));
+        $check = $this->Base_model->getDataBy("siswa", array('siswa_id' => $user_id, 'siswa_password' => $oldPassword));
+        if($check->num_rows() > 0){
+            $update = $this->Base_model->updateData("siswa", array('siswa_password' => $newPassword), array('siswa_id' => $user_id));
+            if($update == true){
+                $this->set_response([
+                    'isSuccess' => TRUE,
+                    'message' => 'Successfully change password',
+                    'data' => null
+                ], REST_Controller::HTTP_OK);
+            }else{
+                $this->set_response([
+                    'isSuccess' => FALSE,
+                    'message' => 'Opps...something went wrong',
+                    'data' => null
+                ], REST_Controller::HTTP_OK);
+            }
+        }else{
+            $this->set_response([
+                'isSuccess' => FALSE,
+                'message' => 'Kata sandi lama anda tidak sesuai',
+                'data' => null
+            ], REST_Controller::HTTP_OK);
+        }
+        
+    }
 }

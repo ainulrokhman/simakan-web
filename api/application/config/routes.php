@@ -63,9 +63,12 @@ $route['api/example/users/(:num)(\.)([a-zA-Z0-9_-]+)(.*)'] = 'api/example/users/
 
 //auth
 $route['login'] = 'api/auth/login';
+$route['changepassword'] = 'api/auth/changepassword';
 
 //user
 $route['user'] = 'api/user/getuser';
+$route['changephoto'] = 'api/user/changephoto';
+$route['updateprofile'] = 'api/user/updateprofile';
 
 $route['angket'] = 'api/angket/getangket';
 $route['question'] = 'api/angket/getQuestion';
