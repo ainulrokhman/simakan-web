@@ -75,6 +75,18 @@ $route['organizing/result/(:any)'] = 'organizing/result/$1';
 //actuating
 $route['actuating'] = 'actuating/index';
 
+//controlling
+$route['controlling'] = 'controlling/index';
+$route['controlling/add'] = 'controlling/addevaluasi';
+$route['controlling/save'] = 'controlling/saveevaluasi';
+$route['controlling/delete/(:any)'] = 'controlling/deleteevaluasi/$1';
+
+//category
+$route['category'] = 'category/index';
+$route['category/add'] = 'category/addcategory';
+$route['category/save'] = 'category/savecategory';
+$route['category/delete/(:any)'] = 'category/deletecategory/$1';
+
 //siswa
 $route['siswa'] = 'siswa/index';
 $route['siswa/add'] = 'siswa/addsiswa';
