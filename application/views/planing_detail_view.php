@@ -206,15 +206,15 @@
           </div>
           <div class="form-group">
             <label for="example-text-input" class="form-control-label">Opsi C</label>
-            <input class="form-control" placeholder="Opsi C" type="text" name="opsi_c" required="required">
+            <input class="form-control" placeholder="Opsi C" type="text" name="opsi_c">
           </div>
           <div class="form-group">
             <label for="example-text-input" class="form-control-label">Opsi D</label>
-            <input class="form-control" placeholder="Opsi D" type="text" name="opsi_d" required="required">
+            <input class="form-control" placeholder="Opsi D" type="text" name="opsi_d">
           </div>
           <div class="form-group">
             <label for="example-text-input" class="form-control-label">Opsi E</label>
-            <input class="form-control" placeholder="Opsi E" type="text" name="opsi_e" required="required">
+            <input class="form-control" placeholder="Opsi E" type="text" name="opsi_e">
           </div>
           <div class="form-group">
             <label for="example-text-input" class="form-control-label">Jawaban</label>
