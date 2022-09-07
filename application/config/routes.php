@@ -69,6 +69,8 @@ $route['planing/deletequestion/(:any)'] = 'planing/deletequestion/$1';
 
 //organizing
 $route['organizing'] = 'organizing/index';
+$route['organizing/detail/(:any)'] = 'organizing/detail/$1';
+$route['organizing/result/(:any)'] = 'organizing/result/$1';
 
 //siswa
 $route['siswa'] = 'siswa/index';

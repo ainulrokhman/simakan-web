@@ -93,7 +93,8 @@
                     </div>
                     <!-- End Modal -->
                     <?php
-                      $sudah_mengerjakan = $this->Base_model->getDataBy('responden', array('angket_id' => $data_angket->angket_id, 'is_doing' => 1));
+                      $sudah_mengerjakan = $this->Base_model->getDataBy('responden', array('angket_id' => $data_angket->angket_id, 'is_doing' => 2));
+                      $sedang_mengerjakan = $this->Base_model->getDataBy('responden', array('angket_id' => $data_angket->angket_id, 'is_doing' => 1));
                       $belum_mengerjakan = $this->Base_model->getDataBy('responden', array('angket_id' => $data_angket->angket_id, 'is_doing' => 0));
                     ?>
                     <script>
@@ -140,6 +141,9 @@
                             }, {
                                 name: 'Belum Mengerjakan',
                                 y: <?php echo (int) $belum_mengerjakan->num_rows();?>
+                            }, {
+                                name: 'Sedang Mengerjakan',
+                                y: <?php echo (int) $sedang_mengerjakan->num_rows();?>
                             }]
                         }]
                     });
@@ -149,7 +153,7 @@
                   <span class="text-secondary text-xs font-weight-bold"><?php echo date('d M Y', strtotime($data_angket->angket_end_date));?></span>
                 </td>
                 <td class="align-middle" style="text-align:center;vertical-align:middle">
-                  <a href="<?php echo base_url();?>planing/detail/<?php echo $data_angket->angket_id;?>" class="text-secondary font-weight-bold text-sm">
+                  <a href="<?php echo base_url();?>organizing/detail/<?php echo $data_angket->angket_id;?>" class="text-secondary font-weight-bold text-sm">
                     <i class="fa fa-search"></i>
                   </a>
                 </td>
