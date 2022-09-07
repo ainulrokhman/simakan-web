@@ -72,6 +72,9 @@ $route['organizing'] = 'organizing/index';
 $route['organizing/detail/(:any)'] = 'organizing/detail/$1';
 $route['organizing/result/(:any)'] = 'organizing/result/$1';
 
+//actuating
+$route['actuating'] = 'actuating/index';
+
 //siswa
 $route['siswa'] = 'siswa/index';
 $route['siswa/add'] = 'siswa/addsiswa';

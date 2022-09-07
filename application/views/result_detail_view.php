@@ -70,10 +70,45 @@
             </table>
           </div>
           <br><br>
-          <p class="mb-0 text-secondary text-xxs font-weight-bolder opacity-7">Total Soal : <?php echo $total_soal;?></p>
-          <p class="mb-0 text-secondary text-xxs font-weight-bolder opacity-7">Total Benar : <?php echo $benar;?></p>
-          <p class="mb-0 text-secondary text-xxs font-weight-bolder opacity-7">Total Salah : <?php echo $salah;?></p>
-          <p class="mb-0"><b>Skor : <?php echo $benar / $total_soal * 100;?></p>
+          <p class="mb-0">Skor Pengerjaan</p><br>
+          <table class="table align-items-center mb-0">
+              <thead>
+                <tr>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="text-align:center;vertical-align:middle">Total Soal</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="text-align:center;vertical-align:middle">Total Benar</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="text-align:center;vertical-align:middle">Total Salah</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="text-align:center;vertical-align:middle">Skor</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="text-align:center;vertical-align:middle">RPL</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="text-align:center;vertical-align:middle">
+                    <span class="text-secondary text-xs font-weight-bold"><?php echo $total_soal;?></span>
+                  </td>
+                  <td style="text-align:center;vertical-align:middle">
+                    <span class="text-secondary text-xs font-weight-bold"><?php echo $benar;?></span>
+                  </td>
+                  <td style="text-align:center;vertical-align:middle">
+                    <span class="text-secondary text-xs font-weight-bold"><?php echo $salah;?></span>
+                  </td>
+                  <td style="text-align:center;vertical-align:middle">
+                    <b><?php echo $benar / $total_soal * 100;?></b>
+                  </td>
+                  <td style="text-align:center;vertical-align:middle">
+                      <?php if(($benar / $total_soal * 100) > 50) { ?>
+                        <a href="#" class="text-secondary">
+                          <i class="fa fa-file-pdf"></i>
+                        </a>
+                      <?php }else{ ?>
+                        <a href="#" class="text-danger">
+                          <i class="fa fa-file-pdf"></i>
+                        </a>
+                      <?php } ?>
+                  </td>
+                </tr>
+              </tbody>
+          </table>
         </div>
       </form>
     </div>
