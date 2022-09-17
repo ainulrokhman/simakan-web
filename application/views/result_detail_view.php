@@ -105,7 +105,7 @@
                           <i class="fa fa-file-pdf"></i>
                         </a>
                       <?php }else{ ?>
-                        <a href="#" class="text-danger">
+                        <a href="<?php echo base_url();?>rpl" class="text-danger">
                           <i class="fa fa-file-pdf"></i>
                         </a>
                       <?php } ?>

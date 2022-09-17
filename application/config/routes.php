@@ -74,6 +74,7 @@ $route['organizing/result/(:any)'] = 'organizing/result/$1';
 
 //actuating
 $route['actuating'] = 'actuating/index';
+$route['rpl'] = 'actuating/rpl';
 
 //controlling
 $route['controlling'] = 'controlling/index';

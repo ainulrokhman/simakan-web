@@ -65,6 +65,7 @@
 		"coverage": "@php vendor/bin/phpunit --coverage-text"
 	},
 	"config": {
-		"sort-packages": true
+		"sort-packages": true,
+		"platform-check": false
 	}
 }

@@ -60,5 +60,9 @@ class Actuating extends CI_Controller{
 			$this->load->view('login_view');
 		}
 	}
+
+	public function rpl() {
+		$this->load->view("rpl_view");
+	}
 }
 ?>
