@@ -1,6 +1,6 @@
 <?php
 // Tentukan path yang tepat ke mPDF
-$nama_dokumen='Daftar_seleksi_calon_siswa'; //Beri nama file PDF hasil.
+$nama_dokumen='RPL'; //Beri nama file PDF hasil.
 define('_MPDF_PATH','assets/plugins/mpdf/vendor/'); // Tentukan folder dimana anda menyimpan folder mpdf
 require_once(_MPDF_PATH . "autoload.php"); // Arahkan ke file mpdf.php didalam folder mpdf
 //$mpdf=new mPDF('utf-8', 'A4', 10.5, 'arial'); // Membuat file mpdf baru
