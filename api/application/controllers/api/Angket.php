@@ -143,19 +143,27 @@ class Angket extends BD_Controller {
 		$question_id = $this->post('question_id');
 		$siswa_id = $this->post('siswa_id');
         $answer_value = $this->post('answer_value');
+        $check_score = $this->Base_model->getDataBy("questionner", array('angket_id' => $angket_id, 'questionner_id' => $question_id));
         $answer = "";
+        $point = 0;
         if($answer_value == 0) {
             $answer = "A";
+            $point = (int) $check_score->row()->score_a;
         } else if($answer_value == 1) {
             $answer = "B";
+            $point = (int) $check_score->row()->score_b;
         } else if($answer_value == 2) {
             $answer = "C";
+            $point = (int) $check_score->row()->score_c;
         } else if($answer_value == 3) {
             $answer = "D";
+            $point = (int) $check_score->row()->score_d;
         } else if($answer_value == 4) {
             $answer = "E";
+            $point = (int) $check_score->row()->score_e;
         } else {
             $answer = "";
+            $point = 0;
         }
 
         $check = $this->Base_model->getDataBy("answer", array('angket_id' => $angket_id, 'questionner_id' => $question_id, 'siswa_id' => $siswa_id));
@@ -164,6 +172,7 @@ class Angket extends BD_Controller {
 
             $data = array(
                 'answer_value' => $answer,
+                'score' => $point,
                 'updated_by' => $siswa_id,
                 'updated_date' => date("Y-m-d H:i:s")
             );
@@ -196,6 +205,7 @@ class Angket extends BD_Controller {
                 'questionner_id'  => $question_id,
                 'siswa_id'    	  => $siswa_id,
                 'answer_value'    => $answer,
+                'score' => $point,
                 'created_by'      => $siswa_id,
                 'updated_by'      => $siswa_id
             );

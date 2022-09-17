@@ -29,21 +29,31 @@
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="text-align:center;vertical-align:middle">No</th>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="text-align:center;vertical-align:middle">Pertanyaan</th>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="text-align:center;vertical-align:middle">Jawaban</th>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="text-align:center;vertical-align:middle">Status</th>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="text-align:center;vertical-align:middle">Score</th>
                 </tr>
               </thead>
               <tbody>
                 <?php
                 $no = 0;
-                $benar = 0;
-                $salah = 0;
+                $total_point = 0;
                 foreach($answer as $data_answer) {
                   $no++;
-                  if($data_answer->answer_value == $data_answer->true_answer) {
-                    $benar++;
+                  $check_score = $this->Base_model->getDataBy("questionner", array('angket_id' => $data_answer->angket_id, 'questionner_id' => $data_answer->questionner_id));
+                  if($data_answer->answer_value == "A") {
+                    $point = (int) $check_score->row()->score_a;
+                  } else if($data_answer->answer_value == "B") {
+                      $point = (int) $check_score->row()->score_b;
+                  } else if($data_answer->answer_value == "C") {
+                      $point = (int) $check_score->row()->score_c;
+                  } else if($data_answer->answer_value == "D") {
+                      $point = (int) $check_score->row()->score_d;
+                  } else if($data_answer->answer_value == "E") {
+                      $point = (int) $check_score->row()->score_e;
                   } else {
-                    $salah++;
+                      $point = 0;
                   }
+
+                  $total_point = $total_point + $point;
                 ?>
                 <tr>
                   <td style="text-align:center;vertical-align:middle">
@@ -57,10 +67,12 @@
                   </td>
                   <td style="text-align:center;vertical-align:middle;">
                     <span class="text-secondary text-xs font-weight-bold">
-                      <?php if($data_answer->answer_value == $data_answer->true_answer) { ?>
-                        <span class="badge badge-sm bg-gradient-success">Benar</span>
+                      <?php if($point == 10) { ?>
+                        <span class="badge badge-sm bg-gradient-success"><?php echo $point;?></span>
+                      <?php }else if($point < 10 && $point > 5) { ?>
+                        <span class="badge badge-sm bg-gradient-secondary"><?php echo $point;?></span>
                       <?php }else{ ?>
-                        <span class="badge badge-sm bg-gradient-danger">Salah</span>
+                        <span class="badge badge-sm bg-gradient-danger"><?php echo $point;?></span>
                       <?php } ?>
                     </span>
                   </td>
@@ -75,8 +87,6 @@
               <thead>
                 <tr>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="text-align:center;vertical-align:middle">Total Soal</th>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="text-align:center;vertical-align:middle">Total Benar</th>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="text-align:center;vertical-align:middle">Total Salah</th>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="text-align:center;vertical-align:middle">Skor</th>
                   <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="text-align:center;vertical-align:middle">RPL</th>
                 </tr>
@@ -87,16 +97,10 @@
                     <span class="text-secondary text-xs font-weight-bold"><?php echo $total_soal;?></span>
                   </td>
                   <td style="text-align:center;vertical-align:middle">
-                    <span class="text-secondary text-xs font-weight-bold"><?php echo $benar;?></span>
+                    <b><?php echo $total_point / $total_soal;?></b>
                   </td>
                   <td style="text-align:center;vertical-align:middle">
-                    <span class="text-secondary text-xs font-weight-bold"><?php echo $salah;?></span>
-                  </td>
-                  <td style="text-align:center;vertical-align:middle">
-                    <b><?php echo $benar / $total_soal * 100;?></b>
-                  </td>
-                  <td style="text-align:center;vertical-align:middle">
-                      <?php if(($benar / $total_soal * 100) > 50) { ?>
+                      <?php if(($total_point / $total_soal) > 5) { ?>
                         <a href="#" class="text-secondary">
                           <i class="fa fa-file-pdf"></i>
                         </a>

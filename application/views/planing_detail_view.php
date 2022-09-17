@@ -196,35 +196,130 @@
             <label for="example-text-input" class="form-control-label">Pertanyaan</label>
             <input class="form-control" placeholder="Pertanyaan" type="text" name="question" required="required">
           </div>
-          <div class="form-group">
-            <label for="example-text-input" class="form-control-label">Opsi A</label>
-            <input class="form-control" placeholder="Opsi A" type="text" name="opsi_a" required="required">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="example-text-input" class="form-control-label">Opsi A</label>
+                <input class="form-control" placeholder="Opsi A" type="text" name="opsi_a" required="required">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="example-text-input" class="form-control-label">Score</label>
+                <select name="score_a" class="form-control">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                </select>
+              </div>
+            </div>
           </div>
-          <div class="form-group">
-            <label for="example-text-input" class="form-control-label">Opsi B</label>
-            <input class="form-control" placeholder="Opsi B" type="text" name="opsi_b" required="required">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="example-text-input" class="form-control-label">Opsi B</label>
+                <input class="form-control" placeholder="Opsi B" type="text" name="opsi_b" required="required">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="example-text-input" class="form-control-label">Score</label>
+                <select name="score_b" class="form-control">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                </select>
+              </div>
+            </div>
           </div>
-          <div class="form-group">
-            <label for="example-text-input" class="form-control-label">Opsi C</label>
-            <input class="form-control" placeholder="Opsi C" type="text" name="opsi_c">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="example-text-input" class="form-control-label">Opsi C</label>
+                <input class="form-control" placeholder="Opsi C" type="text" name="opsi_c">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="example-text-input" class="form-control-label">Score</label>
+                <select name="score_c" class="form-control">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                </select>
+              </div>
+            </div>
           </div>
-          <div class="form-group">
-            <label for="example-text-input" class="form-control-label">Opsi D</label>
-            <input class="form-control" placeholder="Opsi D" type="text" name="opsi_d">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="example-text-input" class="form-control-label">Opsi D</label>
+                <input class="form-control" placeholder="Opsi D" type="text" name="opsi_d">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="example-text-input" class="form-control-label">Score</label>
+                <select name="score_d" class="form-control">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                </select>
+              </div>
+            </div>
           </div>
-          <div class="form-group">
-            <label for="example-text-input" class="form-control-label">Opsi E</label>
-            <input class="form-control" placeholder="Opsi E" type="text" name="opsi_e">
-          </div>
-          <div class="form-group">
-            <label for="example-text-input" class="form-control-label">Jawaban</label>
-            <select class="form-control" name="answer" required>
-              <option value="A">A</option>
-              <option value="B">B</option>
-              <option value="C">C</option>
-              <option value="D">D</option>
-              <option value="E">E</option>
-            </select>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="example-text-input" class="form-control-label">Opsi E</label>
+                <input class="form-control" placeholder="Opsi E" type="text" name="opsi_e">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="example-text-input" class="form-control-label">Score</label>
+                <select name="score_e" class="form-control">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                </select>
+              </div>
+            </div>
           </div>
         </div>
         <div class="modal-footer">

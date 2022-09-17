@@ -91,6 +91,11 @@ class Planing extends CI_Controller{
 		$option_c = $this->input->post('opsi_c');
 		$option_d = $this->input->post('opsi_d');
 		$option_e = $this->input->post('opsi_e');
+		$score_a = $this->input->post('score_a');
+		$score_b = $this->input->post('score_b');
+		$score_c = $this->input->post('score_c');
+		$score_d = $this->input->post('score_d');
+		$score_e = $this->input->post('score_e');
 		$answer = $this->input->post('answer');
 		$admin_id = $this->session->userdata('admin_id');
 		$data = array(
@@ -102,7 +107,11 @@ class Planing extends CI_Controller{
 			'option_c' => $option_c,
 			'option_d' => $option_d,
 			'option_e' => $option_e,
-			'true_answer' => $answer,
+			'score_a' => $score_a,
+			'score_b' => $score_b,
+			'score_c' => $score_c,
+			'score_d' => $score_d,
+			'score_e' => $score_e,
 			'created_by' => $admin_id,
 			'updated_by' => $admin_id
 		);

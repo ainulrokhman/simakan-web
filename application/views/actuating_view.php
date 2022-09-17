@@ -38,8 +38,6 @@
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="text-align:center;vertical-align:middle">Judul Angket</th>
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2" style="text-align:center;vertical-align:middle">Nama Siswa</th>
                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2" style="text-align:center;vertical-align:middle">Total Pertanyaan</th>
-                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2" style="text-align:center;vertical-align:middle">Jumlah Benar</th>
-                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2" style="text-align:center;vertical-align:middle">Jumlah Salah</th>
                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="text-align:center;vertical-align:middle">Skor</th>
                 <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" style="text-align:center;vertical-align:middle">Aksi</th>
               </tr>
@@ -51,14 +49,24 @@
           $no++;
           $question = $this->Base_model->getDataBy('questionner', array('angket_id' => $data_angket->angket_id));
           $answer = $this->db->select('*')->from('answer a')->join('questionner b', 'a.questionner_id = b.questionner_id', 'left')->where(array('a.angket_id' => $data_angket->angket_id, 'a.siswa_id' => $data_angket->siswa_id))->get()->result();
-          $benar = 0;
-          $salah = 0;
+          $total_point = 0;
           foreach($answer as $data_answer) {
-            if($data_answer->answer_value == $data_answer->true_answer) {
-              $benar++;
+            $check_score = $this->Base_model->getDataBy("questionner", array('angket_id' => $data_answer->angket_id, 'questionner_id' => $data_answer->questionner_id));
+            if($data_answer->answer_value == "A") {
+              $point = (int) $check_score->row()->score_a;
+            } else if($data_answer->answer_value == "B") {
+                $point = (int) $check_score->row()->score_b;
+            } else if($data_answer->answer_value == "C") {
+                $point = (int) $check_score->row()->score_c;
+            } else if($data_answer->answer_value == "D") {
+                $point = (int) $check_score->row()->score_d;
+            } else if($data_answer->answer_value == "E") {
+                $point = (int) $check_score->row()->score_e;
             } else {
-              $salah++;
+                $point = 0;
             }
+
+            $total_point = $total_point + $point;
           }
 				  ?>
               <tr>
@@ -80,16 +88,10 @@
                   <span class="text-secondary text-xs font-weight-bold"><?php echo $question->num_rows();?></span>
                 </td>
                 <td class="align-middle text-center">
-                  <span class="text-secondary text-xs font-weight-bold"><?php echo $benar;?></span>
-                </td>
-                <td class="align-middle text-center">
-                  <span class="text-secondary text-xs font-weight-bold"><?php echo $salah;?></span>
-                </td>
-                <td class="align-middle text-center">
-                  <span class="text-secondary text-xs font-weight-bold"><b><?php echo $benar / $question->num_rows() * 100;?></b></span>
+                  <span class="text-secondary text-xs font-weight-bold"><b><?php echo $total_point / $question->num_rows();?></b></span>
                 </td>
                 <td class="align-middle" style="text-align:center;vertical-align:middle">
-                      <?php if(($benar / $question->num_rows() * 100) > 50) { ?>
+                      <?php if(($total_point / $question->num_rows()) > 5) { ?>
                         <a href="#" class="text-secondary">
                           <i class="fa fa-file-pdf"></i>
                         </a>
