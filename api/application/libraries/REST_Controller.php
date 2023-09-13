@@ -2216,7 +2216,7 @@ abstract class REST_Controller extends CI_Controller {
             return false;
         }
 
-        $payload['rtime'] = $this->_end_rtime - $this->_start_rtime;
+        $payload['rtime'] = (int) $this->_end_rtime - (int)$this->_start_rtime;
 
         return $this->rest->db->update(
             $this->config->item('rest_logs_table'), $payload, [

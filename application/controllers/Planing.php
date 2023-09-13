@@ -11,6 +11,7 @@ class Planing extends CI_Controller{
 	}
 
 	public function index(){
+		// var_dump($this->session); die;
 		if($this->session->userdata('auth_login') == true){
             $admin_id = $this->session->userdata('admin_id');
 			$admin = $this->Base_model->getDataBy('admin', array('admin_id' => $admin_id))->row_array();

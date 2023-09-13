@@ -405,31 +405,26 @@ class CI_Session {
 	 */
 	protected function _ci_init_vars()
 	{
-		if ( ! empty($_SESSION['__ci_vars']))
-		{
+		if (!empty($_SESSION['__ci_vars'])) {
 			$current_time = time();
 
-			foreach ($_SESSION['__ci_vars'] as $key => &$value)
-			{
-				if ($value === 'new')
-				{
+			foreach ($_SESSION['__ci_vars'] as $key => &$value) {
+				if ($value === 'new') {
 					$_SESSION['__ci_vars'][$key] = 'old';
 				}
 				// Hacky, but 'old' will (implicitly) always be less than time() ;)
 				// DO NOT move this above the 'new' check!
-				elseif ($value < $current_time)
-				{
+				elseif ($value === 'old' || $value < $current_time) {
 					unset($_SESSION[$key], $_SESSION['__ci_vars'][$key]);
 				}
 			}
 
-			if (empty($_SESSION['__ci_vars']))
-			{
+			if (empty($_SESSION['__ci_vars'])) {
 				unset($_SESSION['__ci_vars']);
 			}
 		}
 
-		$this->userdata =& $_SESSION;
+		$this->userdata = &$_SESSION;
 	}
 
 	// ------------------------------------------------------------------------

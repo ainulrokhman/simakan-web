@@ -44,8 +44,7 @@ class Auth extends CI_Controller{
 				'type' => 'success'
 			);
 			$this->session->set_flashdata($alert);
-			redirect(base_url());
- 
+			redirect(base_url()); 
 		}else{
 			$alert = array(
                 'message' => 'NIP atau Password anda salah',
